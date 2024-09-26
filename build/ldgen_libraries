@@ -35,5 +35,6 @@
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_vfs_console/libesp_vfs_console.a
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/vfs/libvfs.a
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/fatfs/libfatfs.a
+/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/espressif__usb_host_msc/libespressif__usb_host_msc.a
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/main/libmain.a

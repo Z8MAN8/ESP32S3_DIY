@@ -409,6 +409,13 @@
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/fatfs/CMakeFiles/install.dir
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/fatfs/CMakeFiles/install/local.dir
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/fatfs/CMakeFiles/install/strip.dir
+/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir
+/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/CMakeFiles/edit_cache.dir
+/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/CMakeFiles/rebuild_cache.dir
+/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/CMakeFiles/list_install_components.dir
+/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/CMakeFiles/install.dir
+/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/CMakeFiles/install/local.dir
+/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/CMakeFiles/install/strip.dir
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/espressif__usb_host_msc/CMakeFiles/__idf_espressif__usb_host_msc.dir
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/espressif__usb_host_msc/CMakeFiles/edit_cache.dir
 /home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/espressif__usb_host_msc/CMakeFiles/rebuild_cache.dir

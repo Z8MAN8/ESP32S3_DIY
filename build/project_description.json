@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "usb-msc",
-    "project_version":    "1",
+    "project_version":    "672a43c-dirty",
     "project_path":       "/home/csc/Project/recoding_storage_test/DYI/msc",
     "idf_path":           "/home/csc/esp/v5.3/esp-idf",
     "build_dir":          "/home/csc/Project/recoding_storage_test/DYI/msc/build",
@@ -21,12 +21,12 @@
     "monitor_toolprefix": "xtensa-esp32s3-elf-",
     "c_compiler":         "/home/csc/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20240530/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc",
     "config_environment" : {
-        "COMPONENT_KCONFIGS" : "/home/csc/esp/v5.3/esp-idf/components/efuse/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_common/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_driver_gpio/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_driver_spi/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_driver_uart/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_driver_usb_serial_jtag/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_hw_support/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_partition/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_pm/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_ringbuf/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_system/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_timer/Kconfig;/home/csc/esp/v5.3/esp-idf/components/fatfs/Kconfig;/home/csc/esp/v5.3/esp-idf/components/freertos/Kconfig;/home/csc/esp/v5.3/esp-idf/components/hal/Kconfig;/home/csc/esp/v5.3/esp-idf/components/heap/Kconfig;/home/csc/esp/v5.3/esp-idf/components/log/Kconfig;/home/csc/esp/v5.3/esp-idf/components/mbedtls/Kconfig;/home/csc/esp/v5.3/esp-idf/components/newlib/Kconfig;/home/csc/esp/v5.3/esp-idf/components/pthread/Kconfig;/home/csc/esp/v5.3/esp-idf/components/soc/Kconfig;/home/csc/esp/v5.3/esp-idf/components/spi_flash/Kconfig;/home/csc/esp/v5.3/esp-idf/components/usb/Kconfig;/home/csc/esp/v5.3/esp-idf/components/vfs/Kconfig;/home/csc/esp/v5.3/esp-idf/components/wear_levelling/Kconfig",
+        "COMPONENT_KCONFIGS" : "/home/csc/esp/v5.3/esp-idf/components/efuse/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_common/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_driver_gpio/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_driver_i2s/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_driver_spi/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_driver_uart/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_driver_usb_serial_jtag/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_hw_support/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_partition/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_pm/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_ringbuf/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_system/Kconfig;/home/csc/esp/v5.3/esp-idf/components/esp_timer/Kconfig;/home/csc/esp/v5.3/esp-idf/components/fatfs/Kconfig;/home/csc/esp/v5.3/esp-idf/components/freertos/Kconfig;/home/csc/esp/v5.3/esp-idf/components/hal/Kconfig;/home/csc/esp/v5.3/esp-idf/components/heap/Kconfig;/home/csc/esp/v5.3/esp-idf/components/log/Kconfig;/home/csc/esp/v5.3/esp-idf/components/mbedtls/Kconfig;/home/csc/esp/v5.3/esp-idf/components/newlib/Kconfig;/home/csc/esp/v5.3/esp-idf/components/pthread/Kconfig;/home/csc/esp/v5.3/esp-idf/components/soc/Kconfig;/home/csc/esp/v5.3/esp-idf/components/spi_flash/Kconfig;/home/csc/esp/v5.3/esp-idf/components/usb/Kconfig;/home/csc/esp/v5.3/esp-idf/components/vfs/Kconfig;/home/csc/esp/v5.3/esp-idf/components/wear_levelling/Kconfig",
         "COMPONENT_KCONFIGS_PROJBUILD" : "/home/csc/esp/v5.3/esp-idf/components/bootloader/Kconfig.projbuild;/home/csc/esp/v5.3/esp-idf/components/esp_app_format/Kconfig.projbuild;/home/csc/esp/v5.3/esp-idf/components/esp_rom/Kconfig.projbuild;/home/csc/esp/v5.3/esp-idf/components/esptool_py/Kconfig.projbuild;/home/csc/esp/v5.3/esp-idf/components/partition_table/Kconfig.projbuild"
     },
     "common_component_reqs": [ "cxx", "newlib", "freertos", "esp_hw_support", "heap", "log", "soc", "hal", "esp_rom", "esp_common", "esp_system", "xtensa" ],
-    "build_components" : [ "app_update", "bootloader", "bootloader_support", "cxx", "efuse", "esp_app_format", "esp_bootloader_format", "esp_common", "esp_driver_gpio", "esp_driver_sdmmc", "esp_driver_sdspi", "esp_driver_spi", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_hw_support", "esp_mm", "esp_partition", "esp_pm", "esp_ringbuf", "esp_rom", "esp_system", "esp_timer", "esp_vfs_console", "espressif__usb_host_msc", "esptool_py", "fatfs", "freertos", "hal", "heap", "log", "main", "mbedtls", "newlib", "partition_table", "pthread", "sdmmc", "soc", "spi_flash", "usb", "vfs", "wear_levelling", "xtensa", "" ],
-    "build_component_paths" : [ "/home/csc/esp/v5.3/esp-idf/components/app_update", "/home/csc/esp/v5.3/esp-idf/components/bootloader", "/home/csc/esp/v5.3/esp-idf/components/bootloader_support", "/home/csc/esp/v5.3/esp-idf/components/cxx", "/home/csc/esp/v5.3/esp-idf/components/efuse", "/home/csc/esp/v5.3/esp-idf/components/esp_app_format", "/home/csc/esp/v5.3/esp-idf/components/esp_bootloader_format", "/home/csc/esp/v5.3/esp-idf/components/esp_common", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_gpio", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_sdmmc", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_sdspi", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_spi", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_uart", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_usb_serial_jtag", "/home/csc/esp/v5.3/esp-idf/components/esp_hw_support", "/home/csc/esp/v5.3/esp-idf/components/esp_mm", "/home/csc/esp/v5.3/esp-idf/components/esp_partition", "/home/csc/esp/v5.3/esp-idf/components/esp_pm", "/home/csc/esp/v5.3/esp-idf/components/esp_ringbuf", "/home/csc/esp/v5.3/esp-idf/components/esp_rom", "/home/csc/esp/v5.3/esp-idf/components/esp_system", "/home/csc/esp/v5.3/esp-idf/components/esp_timer", "/home/csc/esp/v5.3/esp-idf/components/esp_vfs_console", "/home/csc/Project/recoding_storage_test/DYI/msc/managed_components/espressif__usb_host_msc", "/home/csc/esp/v5.3/esp-idf/components/esptool_py", "/home/csc/esp/v5.3/esp-idf/components/fatfs", "/home/csc/esp/v5.3/esp-idf/components/freertos", "/home/csc/esp/v5.3/esp-idf/components/hal", "/home/csc/esp/v5.3/esp-idf/components/heap", "/home/csc/esp/v5.3/esp-idf/components/log", "/home/csc/Project/recoding_storage_test/DYI/msc/main", "/home/csc/esp/v5.3/esp-idf/components/mbedtls", "/home/csc/esp/v5.3/esp-idf/components/newlib", "/home/csc/esp/v5.3/esp-idf/components/partition_table", "/home/csc/esp/v5.3/esp-idf/components/pthread", "/home/csc/esp/v5.3/esp-idf/components/sdmmc", "/home/csc/esp/v5.3/esp-idf/components/soc", "/home/csc/esp/v5.3/esp-idf/components/spi_flash", "/home/csc/esp/v5.3/esp-idf/components/usb", "/home/csc/esp/v5.3/esp-idf/components/vfs", "/home/csc/esp/v5.3/esp-idf/components/wear_levelling", "/home/csc/esp/v5.3/esp-idf/components/xtensa", "" ],
+    "build_components" : [ "app_update", "bootloader", "bootloader_support", "cxx", "efuse", "esp_app_format", "esp_bootloader_format", "esp_common", "esp_driver_gpio", "esp_driver_i2s", "esp_driver_sdmmc", "esp_driver_sdspi", "esp_driver_spi", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_hw_support", "esp_mm", "esp_partition", "esp_pm", "esp_ringbuf", "esp_rom", "esp_system", "esp_timer", "esp_vfs_console", "espressif__usb_host_msc", "esptool_py", "fatfs", "freertos", "hal", "heap", "log", "main", "mbedtls", "newlib", "partition_table", "pthread", "sdmmc", "soc", "spi_flash", "usb", "vfs", "wear_levelling", "xtensa", "" ],
+    "build_component_paths" : [ "/home/csc/esp/v5.3/esp-idf/components/app_update", "/home/csc/esp/v5.3/esp-idf/components/bootloader", "/home/csc/esp/v5.3/esp-idf/components/bootloader_support", "/home/csc/esp/v5.3/esp-idf/components/cxx", "/home/csc/esp/v5.3/esp-idf/components/efuse", "/home/csc/esp/v5.3/esp-idf/components/esp_app_format", "/home/csc/esp/v5.3/esp-idf/components/esp_bootloader_format", "/home/csc/esp/v5.3/esp-idf/components/esp_common", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_gpio", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_i2s", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_sdmmc", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_sdspi", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_spi", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_uart", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_usb_serial_jtag", "/home/csc/esp/v5.3/esp-idf/components/esp_hw_support", "/home/csc/esp/v5.3/esp-idf/components/esp_mm", "/home/csc/esp/v5.3/esp-idf/components/esp_partition", "/home/csc/esp/v5.3/esp-idf/components/esp_pm", "/home/csc/esp/v5.3/esp-idf/components/esp_ringbuf", "/home/csc/esp/v5.3/esp-idf/components/esp_rom", "/home/csc/esp/v5.3/esp-idf/components/esp_system", "/home/csc/esp/v5.3/esp-idf/components/esp_timer", "/home/csc/esp/v5.3/esp-idf/components/esp_vfs_console", "/home/csc/Project/recoding_storage_test/DYI/msc/managed_components/espressif__usb_host_msc", "/home/csc/esp/v5.3/esp-idf/components/esptool_py", "/home/csc/esp/v5.3/esp-idf/components/fatfs", "/home/csc/esp/v5.3/esp-idf/components/freertos", "/home/csc/esp/v5.3/esp-idf/components/hal", "/home/csc/esp/v5.3/esp-idf/components/heap", "/home/csc/esp/v5.3/esp-idf/components/log", "/home/csc/Project/recoding_storage_test/DYI/msc/main", "/home/csc/esp/v5.3/esp-idf/components/mbedtls", "/home/csc/esp/v5.3/esp-idf/components/newlib", "/home/csc/esp/v5.3/esp-idf/components/partition_table", "/home/csc/esp/v5.3/esp-idf/components/pthread", "/home/csc/esp/v5.3/esp-idf/components/sdmmc", "/home/csc/esp/v5.3/esp-idf/components/soc", "/home/csc/esp/v5.3/esp-idf/components/spi_flash", "/home/csc/esp/v5.3/esp-idf/components/usb", "/home/csc/esp/v5.3/esp-idf/components/vfs", "/home/csc/esp/v5.3/esp-idf/components/wear_levelling", "/home/csc/esp/v5.3/esp-idf/components/xtensa", "" ],
     "build_component_info" : {
         "app_update": {
             "alias": "idf::app_update",
@@ -161,6 +161,21 @@
             "managed_priv_reqs": [],
             "file": "/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a",
             "sources": [ "/home/csc/esp/v5.3/esp-idf/components/esp_driver_gpio/src/gpio.c", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_gpio/src/gpio_glitch_filter_ops.c", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_gpio/src/rtc_io.c", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_gpio/src/dedic_gpio.c", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_gpio/src/gpio_pin_glitch_filter.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_driver_i2s": {
+            "alias": "idf::esp_driver_i2s",
+            "target": "___idf_esp_driver_i2s",
+            "prefix": "idf",
+            "dir": "/home/csc/esp/v5.3/esp-idf/components/esp_driver_i2s",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_driver_i2s",
+            "reqs": [],
+            "priv_reqs": [ "esp_driver_gpio", "esp_pm", "esp_mm" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a",
+            "sources": [ "/home/csc/esp/v5.3/esp-idf/components/esp_driver_i2s/i2s_common.c", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_i2s/i2s_platform.c", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_i2s/i2s_std.c", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_i2s/i2s_pdm.c", "/home/csc/esp/v5.3/esp-idf/components/esp_driver_i2s/i2s_tdm.c" ],
             "include_dirs": [ "include" ]
         },
         "esp_driver_sdmmc": {
@@ -486,12 +501,12 @@
             "type": "LIBRARY",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "usb", "fatfs", "esp_driver_gpio", "esp_timer", "espressif__usb_host_msc" ],
+            "priv_reqs": [ "usb", "fatfs", "esp_driver_gpio", "esp_timer", "esp_driver_i2s", "espressif__usb_host_msc" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__usb_host_msc" ],
             "file": "/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/main/libmain.a",
             "sources": [ "/home/csc/Project/recoding_storage_test/DYI/msc/main/msc_example_main.c" ],
-            "include_dirs": []
+            "include_dirs": [ "/home/csc/esp/v5.3/esp-idf/examples/peripherals/i2s/common" ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -1891,10 +1906,10 @@
             "dir": "/home/csc/Project/recoding_storage_test/DYI/msc/main",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "usb", "fatfs", "esp_driver_gpio", "esp_timer", "espressif__usb_host_msc" ],
+            "priv_reqs": [ "usb", "fatfs", "esp_driver_gpio", "esp_timer", "esp_driver_i2s", "espressif__usb_host_msc" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__usb_host_msc" ],
-            "include_dirs": []
+            "include_dirs": [ "/home/csc/esp/v5.3/esp-idf/examples/peripherals/i2s/common" ]
         },
         "espressif__usb_host_msc": {
             "alias": "idf::espressif__usb_host_msc",

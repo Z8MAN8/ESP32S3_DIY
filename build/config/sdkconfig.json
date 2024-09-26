@@ -359,6 +359,8 @@
     "HEAP_TRACING_STANDALONE": false,
     "HEAP_TRACING_TOHOST": false,
     "HEAP_USE_HOOKS": false,
+    "I2S_ENABLE_DEBUG_LOG": false,
+    "I2S_ISR_IRAM_SAFE": false,
     "IDF_CMAKE": true,
     "IDF_EXPERIMENTAL_FEATURES": false,
     "IDF_FIRMWARE_CHIP_ID": 9,

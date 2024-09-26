@@ -239,6 +239,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/esp_driver_i2s/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/home/csc/Project/recoding_storage_test/DYI/msc/build/esp-idf/espressif__usb_host_msc/cmake_install.cmake")
 endif()
 
