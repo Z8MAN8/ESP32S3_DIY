@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/csc/Project/recoding_storage_test/DYI/msc/build/CMakeFiles/bootloader
+/home/csc/Project/recoding_storage_test/DYI/msc/build/CMakeFiles/bootloader.rule
+/home/csc/Project/recoding_storage_test/DYI/msc/build/CMakeFiles/bootloader-complete.rule
+/home/csc/Project/recoding_storage_test/DYI/msc/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/csc/Project/recoding_storage_test/DYI/msc/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/csc/Project/recoding_storage_test/DYI/msc/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/csc/Project/recoding_storage_test/DYI/msc/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/csc/Project/recoding_storage_test/DYI/msc/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/csc/Project/recoding_storage_test/DYI/msc/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/csc/Project/recoding_storage_test/DYI/msc/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
