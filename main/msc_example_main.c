@@ -32,16 +32,16 @@ static const char *TAG = "example";
 #define APP_QUIT_PIN     GPIO_NUM_0 // BOOT button on most boards
 #define BUFFER_SIZE      4096       // The read/write performance can be improved with larger buffer for the cost of RAM, 4kB is enough for most usecases
 
-#define TEST_REC_TIME  (60) // Recording time in seconds
-#define NUM_CHANNELS        (1) // For mono recording only!
+#define TEST_REC_TIME  (15) // Recording time in seconds
+#define NUM_CHANNELS        (2) // For mono recording only!
 #define I2S_BIT_SAMPLE      (16)
 #define I2S_SAMPLE_RATE     (16000)
 #define SAMPLE_SIZE         (I2S_BIT_SAMPLE * 1024)
 #define BYTE_RATE           (I2S_SAMPLE_RATE * (I2S_BIT_SAMPLE / 8)) * NUM_CHANNELS
 
 #define I2S_STD_MCLK_IO        GPIO_NUM_4     // I2S bit clock io number
-#define I2S_STD_BCLK_IO        GPIO_NUM_6     // I2S bit clock io number
-#define I2S_STD_WS_IO          GPIO_NUM_7     // I2S word select io number
+#define I2S_STD_BCLK_IO        GPIO_NUM_14     // I2S bit clock io number
+#define I2S_STD_WS_IO          GPIO_NUM_15     // I2S word select io number
 #define I2S_STD_DOUT_IO        GPIO_NUM_NC     // I2S data out io number
 #define I2S_STD_DIN_IO         GPIO_NUM_5     // I2S data in io number
 
@@ -62,7 +62,7 @@ void record_wav(uint32_t rec_time)
 
     uint32_t flash_rec_time = BYTE_RATE * rec_time;
     const wav_header_t wav_header =
-        WAV_HEADER_PCM_DEFAULT(flash_rec_time, 16, I2S_SAMPLE_RATE, 1);
+        WAV_HEADER_PCM_DEFAULT(flash_rec_time, 16, I2S_SAMPLE_RATE, 2);
 
     // First check if file exists before creating a new file.
     struct stat st;
@@ -123,7 +123,7 @@ static void i2s_init_std(void)
      * They can help to specify the slot and clock configurations for initialization or re-configuring */
     i2s_std_config_t rx_std_cfg = {
         .clk_cfg  = I2S_STD_CLK_DEFAULT_CONFIG(16000),
-        .slot_cfg = I2S_STD_MSB_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_MONO),
+        .slot_cfg = I2S_STD_PCM_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_STEREO),
         .gpio_cfg = {
             .mclk = I2S_STD_MCLK_IO,    // some codecs may require mclk signal, this example doesn't need it
             .bclk = I2S_STD_BCLK_IO,
@@ -139,7 +139,7 @@ static void i2s_init_std(void)
     };
     /* Default is only receiving left slot in mono mode,
      * update to right here to show how to change the default configuration */
-    rx_std_cfg.slot_cfg.slot_mask = I2S_STD_SLOT_RIGHT;
+    rx_std_cfg.slot_cfg.slot_mask = I2S_STD_SLOT_BOTH;
     // rx_std_cfg.clk_cfg.mclk_multiple = 48; // DIY
     // rx_std_cfg.slot_cfg.slot_bit_width = I2S_SLOT_BIT_WIDTH_32BIT; // DIY
     ESP_ERROR_CHECK(i2s_channel_init_std_mode(i2s_rx_chan, &rx_std_cfg));
