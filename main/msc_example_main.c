@@ -51,18 +51,27 @@ static int16_t i2s_readraw_buff[SAMPLE_SIZE];
 size_t bytes_read;
 const int WAVE_HEADER_SIZE = 44;
 
-void record_wav(uint32_t rec_time)
+enum {
+    RECORDER_STOP = 0,
+    RECORDER_CONTINUE,
+};
+
+static uint8_t iis_files_ok = 0;
+
+void record_wav(uint8_t recoder_cmd)
 {
     const char *directory = "/usb/wav";
     const char *file_path = "/usb/wav/record.wav";
+    static int flash_wr_size = 0;
+    static FILE *f;
 
     // Use POSIX and C standard library functions to work with files.
-    int flash_wr_size = 0;
+    if(iis_files_ok == 0) {
+    flash_wr_size = 0;
     ESP_LOGI(TAG, "Opening file");
 
-    uint32_t flash_rec_time = BYTE_RATE * rec_time;
-    const wav_header_t wav_header =
-        WAV_HEADER_PCM_DEFAULT(flash_rec_time, 16, I2S_SAMPLE_RATE, 2);
+    const wav_header_t wav_header_init =
+        WAV_HEADER_PCM_DEFAULT(BYTE_RATE, 16, I2S_SAMPLE_RATE, 2); // 开始的时候随意设置文件长度，结束再覆盖wav_header
 
     // First check if file exists before creating a new file.
     struct stat st;
@@ -78,19 +87,22 @@ void record_wav(uint32_t rec_time)
     }
 
     // Create new WAV file
-    FILE *f = fopen(file_path, "a");
+    f = fopen(file_path, "a");
     if (f == NULL) {
         ESP_LOGE(TAG, "Failed to open file for writing");
         return;
     }
 
     // Write the header to the WAV file
-    fwrite(&wav_header, sizeof(wav_header), 1, f);
+    fwrite(&wav_header_init, sizeof(wav_header_init), 1, f);
 
     ESP_ERROR_CHECK(i2s_channel_enable(i2s_rx_chan));
+    iis_files_ok = 1;
+    }
 
     // Start recording
-    while (flash_wr_size < flash_rec_time) {
+    // while (flash_wr_size < flash_rec_time) {
+    if (recoder_cmd == RECORDER_CONTINUE) {
         // Read the RAW samples from the microphone
         if (i2s_channel_read(i2s_rx_chan, (char *)i2s_readraw_buff, SAMPLE_SIZE, &bytes_read, 1000) == ESP_OK) {
             printf("[0] %d [1] %d [2] %d [3]%d ...\n", i2s_readraw_buff[0], i2s_readraw_buff[1], i2s_readraw_buff[2], i2s_readraw_buff[3]);
@@ -101,10 +113,26 @@ void record_wav(uint32_t rec_time)
             printf("Read Failed!\n");
         }
     }
+    else {
+        ESP_LOGI(TAG, "Recording done!");
+        fclose(f);
 
-    ESP_LOGI(TAG, "Recording done!");
-    fclose(f);
-    ESP_LOGI(TAG, "File written on USB msc");
+        f = fopen(file_path, "r+");
+        if (f == NULL)
+            ESP_LOGE(TAG, "Failed to open file for writing");
+        
+        const wav_header_t wav_header_final =
+            WAV_HEADER_PCM_DEFAULT(flash_wr_size, 16, I2S_SAMPLE_RATE, 2);
+        fwrite(&wav_header_final, sizeof(wav_header_final), 1, f);
+        fclose(f);
+
+        // ESP_LOGI(TAG, "File written on USB msc");
+    }
+
+
+    // ESP_LOGI(TAG, "Recording done!");
+    // fclose(f);
+    // ESP_LOGI(TAG, "File written on USB msc");
 }
 
 static void i2s_init_std(void)
@@ -316,6 +344,11 @@ void speed_test(void)
     free(data);
 }
 
+// static uint8_t record_wav_flag = 0;
+
+app_message_t msg;
+static uint8_t disk_mount_ok = 0;
+
 /**
  * @brief USB task
  *
@@ -339,6 +372,8 @@ static void usb_task(void *args)
 
     bool has_clients = true;
     while (true) {
+        ESP_LOGI(TAG, "usb_task");
+
         uint32_t event_flags;
         usb_host_lib_handle_events(portMAX_DELAY, &event_flags);
 
@@ -360,6 +395,26 @@ static void usb_task(void *args)
     vTaskDelete(NULL);
 }
 
+static void iis_task(void *args)
+{
+    while (true) {
+        if(disk_mount_ok) {
+            if(msg.id == APP_QUIT) {
+            record_wav(RECORDER_STOP);
+        }
+        else if(msg.id == APP_DEVICE_CONNECTED) {
+            record_wav(RECORDER_CONTINUE);
+        }
+        }
+        vTaskDelay(10);
+    }
+
+    vTaskDelay(10); // Give clients some time to uninstall
+    vTaskDelete(NULL);
+}
+
+static uint8_t disk_need_mount_flag = 1; // 避免反复挂载
+
 void app_main(void)
 {
     // Create FreeRTOS primitives
@@ -368,6 +423,9 @@ void app_main(void)
 
     BaseType_t task_created = xTaskCreate(usb_task, "usb_task", 4096, NULL, 2, NULL);
     assert(task_created);
+
+    BaseType_t ii2_task_created = xTaskCreate(iis_task, "iis_task", 4096, NULL, 2, NULL);
+    assert(ii2_task_created);
 
     // Init BOOT button: Pressing the button simulates app request to exit
     // It will disconnect the USB device and uninstall the MSC driver and USB Host Lib
@@ -391,8 +449,11 @@ void app_main(void)
     while (1) {
         app_message_t msg;
         xQueueReceive(app_queue, &msg, portMAX_DELAY);
+        ESP_LOGI(TAG, "msg.id = %d", msg.id);
 
         if (msg.id == APP_DEVICE_CONNECTED) {
+            // if(disk_need_mount_flag)
+            // {
             // 1. MSC flash drive connected. Open it and map it to Virtual File System
             ESP_ERROR_CHECK(msc_host_install_device(msg.data.new_dev_address, &msc_device));
             const esp_vfs_fat_mount_config_t mount_config = {
@@ -417,6 +478,9 @@ void app_main(void)
                 printf("%s\n", d->d_name);
             }
             closedir(dh);
+            // record_wav_flag = 1;
+            disk_mount_ok = 1;
+            // }
 
             // 4. The disk is mounted to Virtual File System, perform some basic demo file operation
             // file_operations();
@@ -424,11 +488,15 @@ void app_main(void)
             // 5. Perform speed test
             // speed_test();
 
-            record_wav(TEST_REC_TIME);
-
             ESP_LOGI(TAG, "Example finished, you can disconnect the USB flash drive");
         }
         if ((msg.id == APP_DEVICE_DISCONNECTED) || (msg.id == APP_QUIT)) {
+            ESP_LOGI(TAG, "msg.id = %d", msg.id);
+            if(msg.id == APP_QUIT) {
+                // record_wav(RECORDER_STOP);
+                // record_wav_flag = 0;
+                disk_mount_ok = 0;
+            }
             if (vfs_handle) {
                 ESP_ERROR_CHECK(msc_host_vfs_unregister(vfs_handle));
                 vfs_handle = NULL;
@@ -442,7 +510,9 @@ void app_main(void)
                 ESP_ERROR_CHECK(msc_host_uninstall());
                 break;
             }
+            // disk_need_mount_flag = 1;
         }
+        // ESP_LOGI(TAG, "msg.id = %d", msg.id);
     }
 
     ESP_LOGI(TAG, "Done");
